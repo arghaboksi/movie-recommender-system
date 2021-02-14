@@ -35,7 +35,9 @@ print("Average Rating of movie", movie_id, ": ",
 # num_movies = 5
 # num_features = 3
 # X = X[:num_movies, :num_features]
+# print(X)
 # Theta = Theta[:num_users, : num_features]
+# print(Theta)
 # Y = Y[:num_movies, :num_users]
 # R = R[:num_movies, :num_users]
 # X_vec = np.resize(X, (num_movies*num_features, ))
@@ -114,3 +116,12 @@ res = minimize(cost_fn_value, initial_parameters, args=(Y_norm, R, num_users, nu
                jac=cost_fn_gradients, options={'disp': True})
 
 print(np.shape(res.x), 16820+9440)
+
+# Unfolding the learned parameters into X and Theta
+learned_parameters = res.x
+X = np.reshape(
+    learned_parameters[:num_movies*num_features], (num_movies, num_features))
+Theta = np.reshape(
+    learned_parameters[num_movies*num_features:], (num_users, num_features))
+
+print("Recommender System learning completed!")
