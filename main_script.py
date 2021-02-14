@@ -125,3 +125,19 @@ Theta = np.reshape(
     learned_parameters[num_movies*num_features:], (num_users, num_features))
 
 print("Recommender System learning completed!")
+
+# Recommendations for new user
+
+# Predictions Matrix
+predictions = np.dot(X, np.transpose(Theta))
+# My Predictions
+my_predictions = predictions[:, num_users-1] + Y_mean
+# Top 10 Recommendations indices
+rec_mov_indices = np.argsort(my_predictions)[-1:-11:-1]
+
+print('Top 10 Recommendations for You : ')
+
+for i in rec_mov_indices:
+      print(movie_list[str(i+1)])
+
+
