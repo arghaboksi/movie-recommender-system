@@ -1,7 +1,19 @@
 import numpy as np
+import json
+
+# Loading the required values from useful_values
+filehandler = open('useful_values.json', 'r', encoding='utf-8')
+result = filehandler.read()
+useful_values = json.loads(result)
+useful_values["Y_norm"] = np.array(useful_values["Y_norm"])
+useful_values["R"] = np.array(useful_values["R"])
+filehandler.close()
+
+Y, R, num_users, num_movies, num_features, lambd = [useful_values[k] for k in (
+    'Y_norm', 'R', 'num_users', 'num_movies', 'num_features', 'lambd')]
 
 
-def cost_fn_value(parameters, Y, R, num_users, num_movies, num_features, lambd):
+def cost_fn_value(parameters, Y=Y, R=R, num_users=num_users, num_movies=num_movies, num_features=num_features, lambd=lambd):
     """
     Calculates the collaborative filtering cost function value
     for a specific setting of parameters

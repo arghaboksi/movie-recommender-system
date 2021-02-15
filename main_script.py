@@ -3,8 +3,7 @@ import numpy as np
 from scipy.optimize import minimize
 from load_movie import load_movie
 from mean_normalization import mean_normalization
-from cost_function import cost_fn_value
-from cost_function_gradient import cost_fn_gradients
+import json
 
 # Loading the movie rating dataset
 annots = loadmat('movies.mat')  # returns a python dictionary
@@ -111,9 +110,29 @@ initial_parameters = np.concatenate((X_vec, Theta_vec))
 # Regularization Parameter
 lambd = 10
 
-# Optimization
-res = minimize(cost_fn_value, initial_parameters, args=(Y_norm, R, num_users, num_movies, num_features, lambd), method='BFGS',
-               jac=cost_fn_gradients, options={'disp': True})
+# Some Useful Values
+useful_values = {
+    "Y_norm": Y_norm.tolist(),
+    "R": R.tolist(),
+    "num_users": num_users,
+    "num_movies": num_movies,
+    "num_features": num_features,
+    "lambd": lambd
+}
+
+# Storing useful values into a json file
+json_object = json.dumps(useful_values)
+filehandler = open('useful_values.json', 'wt')
+filehandler.write(json_object)
+filehandler.close()
+
+# Loading the cost and gradient evaluation functions
+import cost_function_gradient
+import cost_function
+
+# Optimization algorithm used: BFGS
+res = minimize(cost_function.cost_fn_value, initial_parameters, method='BFGS',
+               jac=cost_function_gradient.cost_fn_gradients, options={'disp': True, 'maxiter': 1})
 
 print(np.shape(res.x), 16820+9440)
 
@@ -138,6 +157,4 @@ rec_mov_indices = np.argsort(my_predictions)[-1:-11:-1]
 print('Top 10 Recommendations for You : ')
 
 for i in rec_mov_indices:
-      print(movie_list[str(i+1)])
-
-
+    print(movie_list[str(i+1)])
