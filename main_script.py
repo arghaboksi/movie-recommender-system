@@ -66,14 +66,28 @@ movie_list = load_movie()
 my_ratings = np.zeros(num_movies+1)
 
 # New User Ratings
-my_ratings[135] = 5  # 2001: A Space Odyssey
-my_ratings[127] = 5  # Godfather, The
-my_ratings[69] = 5  # Forrest Gump
-my_ratings[134] = 4  # Citizen Kane
-my_ratings[56] = 5  # Pulp Fiction
-my_ratings[1512] = 5  # World of Apu, The (Apur Sansar)
-my_ratings[88] = 5  # Sleepless in Seattle
-my_ratings[514] = 4  # Annie Hall
+
+# "Romance/Comedy/Drama" movies:
+my_ratings[69] = 5
+my_ratings[133] = 5
+my_ratings[604] = 5
+my_ratings[491] = 5
+my_ratings[494] = 4
+my_ratings[514] = 5
+my_ratings[197] = 5
+my_ratings[705] = 4
+my_ratings[483] = 5
+my_ratings[481] = 5
+my_ratings[482] = 5
+my_ratings[272] = 5
+my_ratings[955] = 5
+my_ratings[517] = 5
+my_ratings[428] = 5
+
+# "Crime" movies
+my_ratings[98] = 1
+my_ratings[642] = 1
+my_ratings[715] = 2
 
 print("New User Ratings : ")
 
@@ -110,7 +124,7 @@ Theta_vec = np.resize(Theta, (num_users*num_features, ))
 initial_parameters = np.concatenate((X_vec, Theta_vec))
 
 # Regularization Parameter
-lambd = 0.2
+lambd = 0.7
 
 # Parameter Values
 args = (Y_norm, R, num_users, num_movies, num_features, lambd)
