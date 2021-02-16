@@ -29,3 +29,30 @@ Conjugate Gradient
 ## Packages Used : 
 1. NumPy : For Matrix Manipulations.
 2. SciPy : For Optimization.
+
+## Performance : 
+Hyperparameters values used - 
+num_features = 10, lambda = 0.2
+
+"New User Ratings" are the ratings given by a new user for some of the movies, here I have rated "Drama/Romance/Comedy" movies highly but did not really like few of the "Crime" movies.
+
+![](Screenshots/New_User_Ratings.PNG)
+
+"Top 10 Recommendations for you" are the 10 movies that the algorithm is recommending for me to watch next. 
+
+![](Screenshots/Recommendations.PNG)
+
+
+
+Here are the genres of the recommended movies -
+
+1) Comedy/Drama
+2) Comedy/Drama
+3) Comedy/Drama
+4) Romance/Drama
+5) Adventure/Comedy/Drama
+6) Drama/Comedy
+7) Comedy/War
+8) Mystery/Thriller
+9) Satire/Comedy/Drama
+10) Mystery/Thriller
