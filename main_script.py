@@ -124,7 +124,7 @@ Theta_vec = np.resize(Theta, (num_users*num_features, ))
 initial_parameters = np.concatenate((X_vec, Theta_vec))
 
 # Regularization Parameter
-lambd = 0.7
+lambd = 0.2
 
 # Parameter Values
 args = (Y_norm, R, num_users, num_movies, num_features, lambd)
